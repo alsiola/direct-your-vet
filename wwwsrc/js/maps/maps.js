@@ -12,7 +12,7 @@
                 });
             });
 
-            gmaps.KEY = "AIzaSyDmN8YtEYRrv5rkzljADvn82I2pwCbaWlE";
+            gmaps.KEY = "REDACTED";
             gmaps.LIBRARIES = ["places"];
 
             gmaps.load(google => {
