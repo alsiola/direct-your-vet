@@ -1,0 +1,49 @@
+@model DYV.Models.PracticeViewModels.PracticeListViewModel
+
+<h2>Practices</h2>
+
+<div class="col-md-4">
+    <form asp-controller="Practices" asp-action="Create" method="get" class="form-horizontal">
+        <div>
+            <p>
+                <button type="submit" class="btn btn-default" value="createnew" title="Add A New Practice">Add Practice</button>
+            </p>
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Practices[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Practices[0].NumClients)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Practices[0].NumSubscribers)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Practices) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumClients)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumSubscribers)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                @Html.ActionLink("Dashboard", "Index", "SubscriberDashboard", new { practiceId = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

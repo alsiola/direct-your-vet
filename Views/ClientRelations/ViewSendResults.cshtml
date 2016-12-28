@@ -1,0 +1,66 @@
+@model IEnumerable<DYV.Models.ClientRelations.GroupSendResultViewModel>
+
+@{ 
+    ViewData["Title"] = "Your " + ViewData["type"] +  " Campaigns";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateSent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalRequested)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalSucceeded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalFailed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalExisting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Error)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SenderName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateSent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalRequested)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalSucceeded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalFailed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalExisting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Error)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SenderName)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "SMSGroupDetails", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

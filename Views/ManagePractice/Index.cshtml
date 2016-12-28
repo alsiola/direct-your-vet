@@ -1,0 +1,65 @@
+@model IEnumerable<DYV.Models.User.SubscriberUserViewModel>
+
+@{
+    ViewData["Title"] = "Practice Members";
+}
+
+<h2>Practice Members</h2>
+
+<p>
+    <a class="btn btn-default" asp-action="SendInvite">Invite A New Practice Member</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                Role
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+                @if (UserManager.GetUserId(User) == item.Id)
+                {
+                    <span> (You)</span>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @if (item.IsManager)
+                {
+                    <span>Practice Manager</span>
+                } else
+                {
+                    <span>Subscriber</span>
+                }
+            </td>
+            <td>
+                @if (UserManager.GetUserId(User) != item.Id && !item.IsManager)
+                {
+                    @Html.ActionLink("Remove User", "RemoveUser", new { id = item.Id });
+                }            
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<input type="hidden" id="message" value='@ViewData["StatusMessage"]' />
+
+@section Scripts {
+    <script type="text/javascript" src="~/dist/js/modules/editPractice.bundle.js"></script>
+}
+  

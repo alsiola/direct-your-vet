@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Send SMS Messages";
+}
+<h3>@ViewData["Title"]</h3>
+
+<div data-bind="visible: noData">
+    <div data-bind="visible: loading" class="text-center" style="padding-top:100px"><i class="fa fa-cog fa-spin fa-5x fa-fw"></i></div>
+
+    <h4 data-bind="visible: errorData" style="display: none;">Page initialization failed.</h4>
+</div>
+
+<div data-bind="visible: hasData" style="display: none;">
+    <div class="row">
+        <p>Enter mobile phone numbers into the box below, separated with a comma between each number, then enter the message you would like to send.</p>
+        <p>Select the checkbox to add your practice's signup link automatically, with or without individual tracking.</p>
+        <p>A single text message is 160 characters maximum, if this is exceeded then you will use more than one SMS credit for each message.</p>
+        <p>Please ensure you have enough messages left to reach all your recipients - if you need more then you can @Html.ActionLink("purchase messages here.", "Purchase", "ClientRelations")</p>
+    </div>
+
+    <div class="row">
+        <div class="six columns">
+            <h4>Phone Numbers</h4>
+            <select id="tokenize" class="tokenize-select" multiple="multiple"></select>
+
+            <h4>Custom Sender</h4>
+            <input type="text" class="tokenize-textarea" maxlength="8" data-bind="value: senderInput, valueUpdate:'keyup'" />
+            <p>Maximum of 8 characters will be displayed.</p>
+
+            <h4>Your Message</h4>
+            <textarea rows=5 type="text" class="tokenize-textarea" placeholder="Your Message" data-bind="value: messageText, valueUpdate:'keyup'"></textarea><br />
+                
+            <label class="u-inline" for="addLink">Add Registration Link?</label><input type="checkbox" id="addLink" data-bind="checked: addPracticeLink" /><br />
+            <label class="u-inline" for="addCode">Add Tracking Code?</label><input type="checkbox" id="addCode" data-bind="checked: useMarketingCode" /><br />
+
+            <p>You have used <span data-bind="text: smsChars"></span> characters, which is <span data-bind="text: numSmsByLength"></span> messages.</p>
+        </div>
+        <div class="six columns">
+            <h4>Message Preview</h4>
+            <div class="sms-preview">
+                <h5>From: <span data-bind="text: previewSender"></span></h5>
+                <p data-bind="text: previewMessage"></p>
+            </div>
+        </div>
+        </div>
+    <div class="row">
+        <h4>Message Quota</h4>
+        <span>You have </span><span data-bind="text: smsQuota"></span><span> messages to use.</span><br />
+        <span>This request will use </span><span data-bind="text: smsToBeUsed"></span><span> messages.</span>
+        <hr />
+        <button data-bind="click: sendMessages, disable: isSending"><i class="fa fa-mobile-phone fa-2x" data-bind="css: {'fa-spin': isSending}"></i>Send Messages</button>
+    </div>
+</div>
+
+<input hidden id="smsCounter" data-bind="value: numPhoneNumbers" />
+
+@section scripts {
+    <script src="~/dist/js/modules/sendSMS.bundle.js"></script>
+}

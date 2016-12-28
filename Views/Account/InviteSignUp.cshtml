@@ -1,0 +1,37 @@
+﻿@model SubscriberRegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row">
+    <div class="eight columns">
+        <h2>@ViewData["Title"].</h2>
+
+        <form asp-controller="Account" asp-action="InviteSignUp" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="u-full-width" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="u-full-width" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="u-full-width" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+            <label asp-for="ConfirmPassword"></label>
+            <input asp-for="ConfirmPassword" class="u-full-width" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+            <button type="submit" class="button">Register</button>
+
+            <input hidden asp-for="Code" />
+        </form>
+    </div>
+</div>
+

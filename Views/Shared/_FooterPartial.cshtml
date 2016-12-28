@@ -1,0 +1,40 @@
+﻿<footer>
+    <div class="row">
+        <div class="three columns">
+            <h5>Contact Us</h5>
+            <address>
+                DirectYourVet Ltd. <br />
+                2 Kings Road <br />
+                Whitley Bay <br />
+                Tyne and Wear<br />
+                NE26 3BD<br />
+            </address>
+            <a href="tel:01912801396"><i class="fa fa-phone"></i>0191 2801396</a>
+        </div>
+        <div class="three columns">
+            <h5>Our Philosophy</h5>
+            @Html.ActionLink("Technology", "Technology", "Home") <br />
+            @Html.ActionLink("Security", "Security", "Home") <br />
+            @Html.ActionLink("Why Make This Site?", "Why", "Home")
+        </div>
+        <div class="three columns">
+            <h5>How To</h5>
+            <p>
+                Clients
+
+            </p>
+            <p>
+                Vets <br />
+                @Html.ActionLink("Manage My Practice", "Manage", "HowTo") <br />
+                @Html.ActionLink("Search For Places", "Search", "HowTo") <br />
+                @Html.ActionLink("Work With Daylists", "DayLists", "HowTo")
+            </p>
+        </div>
+        <div class="three columns">
+            <h5>The Legal Bits</h5>
+            @Html.ActionLink("Terms and Conditions", "Terms", "Legal") <br />
+            @Html.ActionLink("Privacy Policy", "Privacy", "Legal")
+        </div>
+    </div>
+
+</footer>

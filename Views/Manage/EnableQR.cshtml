@@ -1,0 +1,19 @@
+@model DYV.Models.ManageViewModels.EnableQRCodeViewModel
+@{
+    ViewData["Title"] = "Enable Authenticator App";
+}
+
+<h2>@ViewData["Title"].</h2>
+<div>
+    <hr />
+    <img src="@Model.QRCodeURL" class="img-responsive" />
+    <p>Scan the QR code with your phone's Authenticator app.  If you haven't got the app, then look search for "Authenticator" in your phone's app store, or 
+    visit the <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en_GB">Play Store</a></p>
+    <p>If scanning the code didn't work, then you can manually enter the code below:</p>
+    <p>@Model.ManualEntryKey</p>
+</div>
+<div>
+    <form asp-action="EnableQR">
+        <button class="btn btn-default">Enable</button>
+    </form>
+</div>

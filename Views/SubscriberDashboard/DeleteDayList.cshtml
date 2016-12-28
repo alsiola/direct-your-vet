@@ -1,0 +1,16 @@
+﻿@model DYV.Models.SubscriberDashboard.DayListViewModel
+@{
+    ViewData["Title"] = "Confirm Delete";
+}
+
+<h2>Are you sure you want to delete this day list?</h2>
+<div>
+    <h4>@Html.DisplayFor(model => model.name)</h4>
+    <hr />
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <button type="submit" value="Delete" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i>Delete</button>
+            <a  asp-action="DayListsAll" asp-controller="SubscriberDashboard" class="btn btn-default">Cancel</a>
+        </div>
+    </form>
+</div>

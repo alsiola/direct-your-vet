@@ -1,0 +1,67 @@
+﻿@import 'settings.scss';
+@import 'footer.scss';
+@import 'nav.scss';
+@import 'tables.scss';
+@import 'layout.scss';
+@import 'typography.scss';
+@import 'pagination.scss';
+@import 'maps.scss';
+@import '_breakpoint.scss';
+
+.container {
+    max-width: 1200px;
+}
+
+input.input-validation-error {
+    border-color: red !important;
+}
+
+.show-only-mobile {
+    @include breakpoint($phone) {
+        display:none;
+    }
+}
+
+a {
+    cursor: pointer !important;
+    text-decoration: underline;
+}
+
+button[disabled], html input[disabled] {
+    cursor: not-allowed;
+}
+
+.u-text-center {
+    text-align:center;
+}
+
+ul#noty_center_layout_container > li {
+    margin-bottom:0;
+}
+
+pre > code {
+    white-space:normal;
+}
+
+.u-inline {
+    display:inline;
+    margin-right: 1rem;
+}
+
+@mixin u-flex {
+    display: flex;
+}
+
+.u-flex-column {
+    @include u-flex;
+    flex-direction:column;
+}
+
+.u-flex-bottom {
+    margin-top:auto;
+}
+
+input[type=number], input[type=search], input[type=email], input[type=text], input[type=tel], input[type=url], input[type=password], textarea {
+    min-width: 70%;
+}
+

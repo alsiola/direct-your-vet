@@ -1,0 +1,152 @@
+﻿@import 'settings.scss';
+@import '_breakpoint.scss';
+
+nav {    
+    background: $nav-background;
+    font-size:1.6rem;
+
+    @include breakpoint($phone) {
+        display: flex;
+        flex-direction:row;        
+        flex-wrap:wrap;
+        justify-content:flex-start;
+    }  
+}
+
+nav a {
+    text-decoration:none;
+    color: $nav-foreground;
+}
+
+nav > .nav-section {
+    flex-shrink:0;
+}
+
+nav > .nav-section.collapse-mobile {
+    display:none;
+
+    @include breakpoint($phone) {
+        display: flex;
+    }
+}
+
+nav > .nav-section > ul {
+    padding-left: 2rem;
+    margin:0;
+
+   @include breakpoint($phone) {
+        display: flex;
+        flex-direction:row;
+    }
+}
+
+.nav-section {
+    flex-grow:1;    
+    align-self:flex-end;
+    margin:0;
+}
+
+.right-nav {    
+    justify-content:flex-end;
+}
+
+nav > .nav-section > ul li {
+    list-style: none;
+
+    @include breakpoint($phone) {
+        padding:0.5rem;
+    }
+}
+
+
+nav > .nav-section > ul li > a {
+    display: block;
+    text-transform: uppercase;
+    font-weight:bold;
+    letter-spacing:0.1rem;
+    font-size:1.4rem;
+    color: #fff;
+    padding:0.4rem;
+    transition: all 0.2s ease-in-out;
+}
+
+nav > .nav-section > ul li > a:hover {
+    color: $nav-hover;
+    transition: all 0.2s ease-in-out;
+}
+
+nav > .nav-section > ul > li > a {  
+    border-bottom: 1px solid $nav-background;
+    
+}
+
+nav > .nav-section > ul > li > a:hover {
+    border-bottom: 1px solid $nav-hover;
+}
+
+.nav-toggle {
+    padding-right: 10rem;
+    color: $nav-foreground;
+
+    @include breakpoint($phone) {
+        display:none;
+    }
+}
+
+.nav-dropdown-toggle:after {
+    content:'\25BC';
+}
+
+.nav-dropdown-toggle ~ ul {
+    max-height: 0;
+    opacity:0;
+    overflow: hidden; 
+    z-index:999;
+    margin:0;
+    padding:0;
+    padding-left: 2rem;
+    transition: max-height 0.4s, opacity 0.3s 0.1s, padding 0.4s;
+
+    @include breakpoint($phone) {
+        position:absolute;
+        border-radius:5px;
+        margin:0;
+        padding:0;
+        padding-top:1rem;
+        background: $nav-background;
+        color:$nav-foreground;
+
+        > li  {
+            padding:1rem 1rem 0.5rem 1rem;
+        }
+    }    
+}
+
+.nav-dropdown-toggle:hover ~ ul, .nav-dropdown-toggle ~ ul:hover, .nav-dropdown-toggle:focus ~ ul {
+    max-height: 500px;
+    opacity: 1;
+    transition: max-height 0.5s, opacity 0.5s 0s;
+    padding-top:1rem;
+}
+
+.nav-dropdown-toggle ~ ul > li > a {
+    @include breakpoint($phone) {
+        padding: 0.1rem;
+    }
+}
+
+.nav-brand-container {
+    padding:1rem;
+    flex-grow:0;
+
+    a {
+        display:block;
+        font-family: Lobster, sans-serif;
+        font-size: 3rem;
+        text-align:center;
+    }
+
+    @include breakpoint($phone) {
+        width:initial;
+    }
+}

@@ -1,0 +1,53 @@
+﻿@import 'settings.scss';
+@import '_breakpoint.scss';
+
+table { 
+  width: 100%; 
+  border-collapse: collapse;
+}
+
+tbody > tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+
+thead > th {
+  font-weight: bold;
+}
+
+td, th { 
+  padding: 0.5em; 
+  border: 1px solid #ccc;
+}
+
+td:first-child, th:first-child {
+    padding: 0.5em;
+}
+
+tr:first-child {
+    border-top-left-radius: 20px;
+}
+
+tr:last-child {
+    border-bottom-right-radius:20px;
+}
+
+@include breakpoint($less-than-phone)  {
+
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+	}
+}

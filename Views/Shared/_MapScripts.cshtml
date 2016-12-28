@@ -1,0 +1,10 @@
+﻿<environment names="Development">
+    <script asp-append-version="true" src="~/dist/js/modules/maps.bundle.js"></script>
+    @*<script src="https://maps.googleapis.com/maps/api/js?key=@ApiKeys.GetGoogleMapsApiKey()&callback=DYV.mapInit&libraries=places"
+            async defer></script>*@
+</environment>
+<environment names="Staging,Production">
+    <script src="~/js/modules/maps.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=@ApiKeys.GetGoogleMapsApiKey()&callback=DYV.mapInit&libraries=places"
+            async defer></script>
+</environment>

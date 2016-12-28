@@ -1,0 +1,21 @@
+﻿@model DYV.Models.PlaceViewModels.SharePlacesViewModel
+@{
+    ViewData["Title"] = "Share Your Locations";
+}
+
+<form asp-action="Share">
+    <div class="col-md-12">
+        <h2>Share Your Locations</h2>
+        <div class="form-horizontal">
+            <div class="form-group-lg">
+                <label asp-for="@Model.SelectedPracticeId" class="col-md-2 control-label" />
+                <select class="form-control" asp-for="@Model.SelectedPracticeId" asp-items="@Model.Practices"></select>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Share" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

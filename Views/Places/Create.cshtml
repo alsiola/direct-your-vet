@@ -1,0 +1,67 @@
+﻿@model DYV.Models.PlacesViewModels.AddPlaceViewModel
+
+
+<div>
+    <h4>Add A New Place</h4>
+    <hr />
+    <div id="map" class="map">
+    </div>
+    <input type="text" class="controls" placeholder="Search for your address" id="mapsearch" />
+
+    <button id="geoLocateButton">Find My Current Location</button>
+
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <label asp-for="Name"></label>
+        <div>
+            <span asp-validation-for="Name" class="text-warning" />
+        </div>
+        <input asp-for="Name" />
+
+        <label asp-for="Address1"></label>
+        <div><span asp-validation-for="Address1" class="text-warning" /></div>
+            <input asp-for="Address1" />
+
+        <label asp-for="City"></label>
+        <div>
+            <span asp-validation-for="City" class="text-warning" />
+        </div>
+        <input asp-for="City" />
+
+        <label asp-for="County"></label>
+        <div>
+            <span asp-validation-for="County" class="text-warning" />
+        </div>
+        <input asp-for="County" />
+
+        <label asp-for="Country"></label>
+        <div>
+            <span asp-validation-for="Country" class="text-warning" />
+        </div>
+        <input asp-for="Country" />
+
+        <label asp-for="PostCode"></label>
+        <div>
+            <span asp-validation-for="PostCode" class="text-warning" />
+        </div>
+        <input asp-for="PostCode" />
+
+        <br />
+        <input type="submit" value="Create" class="button" />
+
+        <input  asp-for="Longitude" />
+        <input  asp-for="Latitude" />
+</form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<input id="isEdit" value="create" hidden />
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{await Html.RenderPartialAsync("_MapScripts");}
+}

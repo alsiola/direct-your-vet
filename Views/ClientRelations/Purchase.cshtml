@@ -1,0 +1,81 @@
+﻿@model DYV.Models.Purchase.ViewModels.PurchaseCostsViewModel
+
+@{
+    ViewData["Title"] = "Purchase SMS/emails";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<div class="row">
+    <div class="payment-errors"></div>
+</div>
+
+<form id="payment-form">
+
+    <div class="row">
+        <div class="six columns">
+
+            <label asp-for="@Model.SelectedPurchaseOption">Select item to purchase:</label>
+            <select class="u-full-width" id="purchaseoptions">
+                @foreach (var item in Model.PurchaseOptions)
+                {
+                    <option value="@item.Id" data-price="@item.Price">@item.Text</option>
+                }
+            </select>
+        </div>
+        <div class="three columns">
+            <label for="qty">Quantity</label>
+            <input id="qty" type="text" class="u-full-width" value="1" />
+        </div>
+        <div class="three columns">
+            <label for="total">Total: </label>
+            <input id="total" disabled type="text" class="u-full-width" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="six columns">
+            <label for="name">Cardholder Name</label>
+            <input id="name" type="text" class="u-full-width" data-stripe="name" />
+        </div>
+        <div class="six columns">
+            <label for="postcode">Post Code</label>
+            <input id="postcode" type="text" class="u-full-width" data-stripe="address_zip" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="eight columns">
+            <label for="cardnum">Card Number (16 digits)</label>
+            <input id="cardnum" type="number" class="u-full-width" data-stripe="number" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="four columns">
+            <label for="expmonth">Expiry Month (mm)</label>
+            <input id="expmonth" type="number" class="u-full-width" data-stripe="exp_month" />
+        </div>
+        <div class="four columns">
+            <label for="expyear" >Expiry Year (yy)</label>
+            <input id="expyear" type="number" class="u-full-width" data-stripe="exp_year" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="four columns">
+            <label for="cvc">Card Verification Number</label>
+            <input id="cvc" type="number" class="u-full-width" data-stripe="cvc" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="twelve columns">
+            <button type="submit"><i class="fa fa-shopping-cart fa-2x"></i>Make Payment</button>
+        </div>
+    </div>  
+</form>
+    <form id="server-form"  asp-action="Purchase" asp-controller="ClientRelations" method="post">
+
+    </form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_StripeScripts"); }
+    <script src="~/dist/js/modules/payment.bundle.js"></script>
+    
+}

@@ -1,0 +1,83 @@
+﻿@model DYV.Models.PlaceViewModels.PlacesListViewModel<PlaceListItemViewModel>
+@{
+    ViewData["Title"] = "Manage Your Locations";
+}
+
+<div class="row">
+    <div class="twelve columns">
+        <h2>Your Practices</h2>
+        @Html.ActionButtonWithFa("Share With A New Practice", "Share", "Places", "button", "fa fa-share fa-2x")
+    </div>
+</div>
+
+<div class="row">
+    <div class="twelve columns">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Practices[0].Name)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Practices)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Unshare", "Unshare", new { item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="twelve columns">
+        <h2>Your Saved Places</h2>
+        @Html.ActionButtonWithFa("Add A New Place", "Create", "Places", "button", "fa fa-location-arrow fa-2x")
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Places[0].Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Places[0].Address1)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Places[0].DateAdded)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Places)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateAdded)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { item.Id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

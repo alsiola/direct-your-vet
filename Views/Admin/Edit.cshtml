@@ -1,0 +1,75 @@
+@model DYV.Models.PracticeViewModels.EditPracticeViewModel
+
+@{
+    ViewData["Title"] = "Edit Practice Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div data-bind="visible: noData">
+    <div data-bind="visible: loading" class="text-center" style="padding-top:100px"><i class="fa fa-cog fa-spin fa-5x fa-fw"></i></div>
+
+    <h2 data-bind="visible: errorData" style="display: none;">The practice could not be found.</h2>
+</div>
+
+<div data-bind="visible: hasData" style="display: none;">
+    <form asp-action="Edit">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="Name" class="col-md-2 control-label">Name</label>
+                <div class="col-md-10">
+                    <input id="Name" data-bind="value: practiceName" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button data-bind="click: saveName, attr:{disabled: saving}" type="button" class="btn btn-default">
+                        <i data-bind="visible: saving" class="fa fa-spinner fa-spin fa-fw"></i> 
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="col-md-12">
+        <h4>Current Practice Users</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Role
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: subscriberUsers">
+                <tr>
+                    <td data-bind="text: name"></td>
+                    <td data-bind="text: email"></td>
+                    <td data-bind="text: role"></td>
+                    <td>
+                        <a data-bind="click: $parent.removeUser.bind(null, $data)">Remove</a> |
+                        <a data-bind="visible: isSubscriber, click: $parent.makeManager.bind(null, $data, true)">Add Manager Role</a>
+                        <a data-bind="visible: isManager, click: $parent.makeManager.bind(null, $data, false)">Remove Manager Role</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    <input hidden id="practiceId" value="@ViewData["practiceId"]" />
+
+    @section Scripts {
+        <script src="~/dist/js/modules/editPractice.bundle.js"></script>
+    }

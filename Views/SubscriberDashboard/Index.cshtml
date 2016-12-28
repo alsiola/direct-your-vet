@@ -1,0 +1,154 @@
+@model DYV.Models.SubscriberDashboard.SubscriberDashboardIndexViewModel
+
+@{
+    ViewData["Title"] = Model.PracticeName;
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="six columns">
+        <form>
+            <h4>Search</h4>
+            <label for="searchClientName">Client Name:</label>
+            <input type="text" data-bind="value: searchClient, valueUpdate:'keyup'" id="searchClientName" />
+
+            <label for="searchPlaceName">Place Name:</label>
+            <input type="text" data-bind="value: searchPlace, valueUpdate:'keyup'" id="searchPlaceName" />
+
+            <label for="searchAddress">Address:</label>
+            <input type="text" data-bind="value: searchAddress, valueUpdate:'keyup'" id="searchAddress" />
+
+            <label for="resultsPerPage">Results per Page:</label>
+
+            <select data-bind="options: resultSizes, value: numPerPage"></select><br />
+
+            <button data-bind="click: clearSearch" type="button" value="Clear Search">Clear</button>
+                    
+        </form>
+    </div>
+    <div class="six columns">
+        <div style="display:none;" data-bind="slideOutUp: startedDayList">
+            <h4>New Day List</h4>
+                <label for="dayListName">Daylist Name:</label>
+                <input id="dayListName" class="u-full-width" type="text" data-bind="value: dayList().name" />
+
+                <ul class="fa-ul" data-bind="template: {foreach: dayList().dayListPlaces, beforeRemove: dayList().fadeOut, afterAdd: dayList().fadeIn}">
+                    <li>
+                        <i class="fa fa-map-marker fa-lg fa-li" aria-hidden="true"></i>
+                        <span data-bind="text: name"></span>
+                        <a data-bind="click: $parent.dayList().removeFromList.bind($parent.dayList(), $data)"> Remove</a>
+                    </li>
+                </ul>
+
+                <button class="button" type="button" data-bind="click: dayList().save.bind(dayList())"><i class="fa fa-2x fa-save"></i>Save</button>
+                <button class="button" type="button" data-bind="click: dayList().tryDiscard.bind(dayList())"><i class="fa fa-2x fa-trash-o"></i>Discard</button>
+        </div>
+        <div style="display:none;" data-bind="slideOutUp: !startedDayList()">
+            <h4>Recent Day Lists</h4>
+            <ul class="fa-ul" data-bind="foreach: dayList().savedDayLists">
+                <li>
+                    <a data-bind="attr: {href: detailsUrl}">
+                        <i class="fa fa-map-marker fa-lg fa-li" aria-hidden="true"></i>
+                        <span data-bind="text: name"></span> (<span data-bind="text: dateAdded"></span>)
+                    </a>
+                </li>
+            </ul>
+
+            @Html.ActionLink("View All Daylists", "DayListsAll")
+        </div>
+    </div>
+</div>
+
+<div class="row table-top-pag">
+    <ul class="pagination">
+        <li>
+            <a class="button" href="#" data-bind="click: setPage.bind($data, 1)">&laquo;</a>
+        </li>
+        <li>
+            <a class="button" href="#" data-bind="click: setPage.bind($data, page() - 1)">&lt;</a>
+        </li>
+        <!-- ko foreach: pageArray -->
+        <li>
+            <a class="button" href="#" data-bind="click: $parent.setPage.bind($parent, $data + 1), text: $data + 1, css: {'button-primary': $data + 1 === $parent.page()}"></a>                
+        </li>
+        <!-- /ko -->
+        <li>
+            <a class="button" href="#" data-bind="click: setPage.bind($data, page() + 1)">&gt;</a>
+        </li>
+        <li>
+            <a class="button" href="#" data-bind="click: setPage.bind($data, numPages())">&raquo;</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Client Name</th>
+                <th>Place Name</th>
+                <th>Address</th>
+                <th>City </th>
+                <th>County</th>
+                <th>Country </th>
+                <th>Post Code</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody style="display:none;" data-bind="foreach: places, visible: hasResults">
+            <tr>
+                <td data-bind="text: clientName"></td>
+                <td data-bind="text: name"></td>
+                <td data-bind="text: address1"></td>
+                <td data-bind="text: city"></td>
+                <td data-bind="text: county"></td>
+                <td data-bind="text: country"></td>
+                <td data-bind="text: postcode"></td>
+                <td>
+                    <a data-bind="attr: {href: detailsUrl}">Details</a> |
+                    <a data-bind="click: $parent.dayList().addToList.bind($parent.dayList(), $data), visible: $parent.dayList().canAddToList($data)">Add to Day List</a>
+                    <a data-bind="click: $parent.dayList().removeFromList.bind($parent.dayList(), $data), visible: $parent.dayList().canRemoveFromList($data)">Remove from Day List</a>
+                </td>
+            </tr>
+        </tbody>
+        <tbody data-bind="visible: !hasResults()">
+            <tr>
+                <td colspan="9" class="u-text-center">
+                    <i class="fa fa-cog fa-spin fa-5x fa-fw"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <div class="show-only-mobile table-bottom-pag">
+        <ul class="pagination">
+            <li>
+                <a class="button" href="#" data-bind="click: setPage.bind($data, 1)">&laquo;</a>
+            </li>
+            <li>
+                <a class="button" href="#" data-bind="click: setPage.bind($data, page() - 1)">&lt;</a>
+            </li>
+            <!-- ko foreach: pageArray -->
+            <li data-bind="">
+                <a class="button" href="#" data-bind="click: $parent.setPage.bind($data, $data + 1), text: $data + 1, css: {'button-primary': $data + 1 === $parent.page()}"></a>
+            </li>
+            <!-- /ko -->
+            <li>
+                <a class="button" href="#" data-bind="click: setPage.bind($data, page() + 1)">&gt;</a>
+            </li>
+            <li>
+                <a class="button" href="#" data-bind="click: setPage.bind($data, numPages())">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/dist/js/modules/dashboard.bundle.js"></script>
+}

@@ -1,0 +1,13 @@
+@model DYV.Models.PlaceViewModels.DeletePlaceViewModel
+
+<h2>Are you sure you want to delete this place?</h2>
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    <hr />    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <button asp-action="Index">Back to List</button>
+        </div>
+    </form>
+</div>

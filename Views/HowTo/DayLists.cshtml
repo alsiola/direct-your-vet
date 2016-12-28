@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "How to work with Daylists";
+}
+
+<div class="col-md-12">
+    <h2>@ViewData["Title"]</h2>
+    <p>We provide a daylist service to enable you to group different locations together and save that grouping - typically all the places you will visit in a day.  The daylist can be viewed from any mobile device, or printed out to take
+    with you while you work.</p>
+    <dl>
+        <dt><i class="fa fa-question-circle fa-2x"></i>How do I create a daylist?</dt>
+        <dd>
+            Daylists are created from the "Search Places" screen.  Using the @Html.ActionLink("search tools", "HowTo", "Search") find the first place you wish to add to your list.  Click on the "Add to Day List" link next to that entry in the
+            search results.  You will notice that the "Recent Day Lists" section at the top-right of the screen has been replaced with a "New Day List" section, and your place is beneath it.  Continue to search for places and press
+            "Add To Day List" for each place you require.  Once you are done, you can optionally give your daylist a name, then press "Save" to store the list.
+        </dd>
+
+        <dt><i class="fa fa-question-circle fa-2x"></i>How do I access a daylist?</dt>
+        <dd>
+            Click on the "My Daylists" link in the navigation bar.  This will list all of your saved daylists.  You will see the option to "View Daylist" next to each item, if you click on this it will take you to the daylist details.
+        </dd>
+
+        <dt><i class="fa fa-question-circle fa-2x"></i>How do I change the map views?</dt>
+        <dd>
+            Once you are on the daylist details page, you will see several maps.  The first map shows all the places to give an overview of the whole area.  The following maps show you each individual place, alongside their address and client
+            details.  You can alter the zoom levels of the maps by using the <i class="fa fa-plus fa-2x"></i> and <i class="fa fa-minus fa-2x"></i> buttons on the map, using your mouse wheel, or by pinching the screen if you have a touchscreen
+            device.  Once the maps show the best level of detail, press the "Save Changes" button at the bottom of the page to store your settings.
+        </dd>
+    </dl>
+</div>

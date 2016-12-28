@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using DYV.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="nav-section right-nav collapse-mobile">
+            <ul>
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("PracticeManager"))
+                {
+                <li>
+                    <a class="nav-dropdown-toggle" href="#">Manage Practice</a>
+                    <ul>
+                        <li><a asp-controller="ManagePractice" asp-action="Index">Practice Members</a></li>
+                        <li><a asp-controller="ClientRelations" asp-action="Index">Client Relations</a></li>
+                    </ul>
+                </li>
+            }
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Client"))
+                {
+                <li><a asp-controller="Places" asp-action="Index">Manage Your Locations</a></li>
+            }
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                {
+                <li><a asp-controller="Admin" asp-action="Index">Manage Practices</a></li>
+            }
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("Subscriber"))
+                {
+                <li><a asp-controller="SubscriberDashboard" asp-action="Index">Search Places</a></li>
+                    <li><a asp-controller="SubscriberDashboard" asp-action="DayListsAll">My Daylists</a></li>
+            }
+            <li>
+                <a class="nav-dropdown-toggle" href="#">@UserManager.GetUserName(User)</a>
+                <ul>
+                    <li>
+                        <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Manage My Account</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="document.getElementById('logoutForm').submit()">Log Off</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </form>
+}
+else
+{
+    <div class="nav-section right-nav collapse-mobile">
+        <ul>
+            <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+            <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+        </ul>
+    </div>
+}

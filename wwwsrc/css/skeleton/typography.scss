@@ -1,0 +1,22 @@
+﻿@import 'settings.scss';
+
+h1,h2,h3,h4,h5,h6 {
+    font-family:$headerfont;
+}
+
+* {
+    font-family: $bodyfont, sans-serif;
+}
+
+.text-warning {
+    color: $warningtextcolor;
+}
+
+.fa {
+    margin-right: 1rem;    
+    vertical-align: middle;
+}
+
+dt {
+    font-weight:bold;
+}

@@ -1,0 +1,28 @@
+@model DYV.Models.User.SubscriberUserViewModel
+
+@{
+    ViewData["Title"] = "Remove User";
+}
+
+<h3>Are you sure you want to remove this user?</h3>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>   
+</div>
+<div class="row">
+    <form asp-action="RemoveUser">
+        <div class="col-md-10 col-md-offset-1 form-actions no-color">
+            <input type="submit" value="Remove" class="btn btn-default" />
+        </div>
+    </form>
+</div>
+<hr />
+<div class="row">
+    <a asp-action="Index">Back to Practice Management</a>
+</div>

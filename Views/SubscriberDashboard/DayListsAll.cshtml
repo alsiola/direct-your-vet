@@ -1,0 +1,36 @@
+@model DYV.Models.SubscriberDashboard.DayListDashboardViewModel
+
+@{ 
+    ViewData["Title"] = "Your Day Lists";
+}
+
+<h2>@ViewData["Title"]</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DayLists[0].name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DayLists[0].dateAdded)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.DayLists) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateAdded)
+            </td>
+            <td>
+                @Html.ActionLink("View DayList", "DayListDetails", "SubscriberDashboard", new { item.id }) |
+                @Html.ActionLink("Delete", "DeleteDayList", new { item.id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

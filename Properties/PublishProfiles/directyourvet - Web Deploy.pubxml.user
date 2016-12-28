@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA9sL0XhS/XEiKcwEeGbrg9wAAAAACAAAAAAAQZgAAAAEAACAAAAAwmaupmB5pn78Ndx8IToJsxii2uPitvh3akXdOShhqgQAAAAAOgAAAAAIAACAAAADDSQmk/mpTETsFdtyMnxsAQLi0veQYvOD/K3dWfg1/84AAAAAnGxEi71Uksf/SGBe4reGuBzGaIfnldFuu7nv6aK8U/zP/taTYK3drg1zuhxFsEqViwj5DG9krY1Sq3ju5RnTSFZespStcjrjWKdl158Wpoli8TTNus7LuXR0p0sVDddPst/7vw5OKzQrfVzPma6j1med3z+z6jMK9e6FEwccU5kAAAAAHsBS2fjvHvNYDrCRmmBgg8DLgf8R8QCvmQSkc6XzSAy2qth97IjHDgLKoIv1DFrHYmbr5Tlng/KUgnMnEapyy</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="AzureDb">
+      <Value>Data Source=tcp:directyourvet.database.windows.net,1433;Initial Catalog=directyourvet-sql;User Id=dyv_alex@directyourvet.database.windows.net;Password=Als1baby!;</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

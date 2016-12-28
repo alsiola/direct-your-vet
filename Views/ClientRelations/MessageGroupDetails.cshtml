@@ -1,0 +1,94 @@
+@model IEnumerable<DYV.Models.ClientRelations.IMessageSendResultViewModel>
+
+@{
+    ViewData["Title"] = "Campaign Details";
+}
+
+<h3>@ViewData["Title"]</h3>
+<div class="row">
+    <div class="col-md-12">
+        <h4>Campaign Stats</h4>
+        <dl>
+            <dt>
+                Number Sent Successfully
+            </dt>
+            <dd>
+                @Model.Count(m => m.Success) <br />
+                @Math.Ceiling((double) Model.Count(m => m.Success) * 100 / Model.Count())% of total sent
+            </dd>
+            <dt>
+                Number Failed To Send
+            </dt>
+            <dd>
+                @Model.Count(m => !m.Success) <br />
+                @Math.Ceiling((double)Model.Count(m => !m.Success) * 100 / Model.Count())% of total sent
+            </dd>
+            <dt>
+                Number Of Links Opened
+            </dt>
+            <dd>
+                @Model.Count(m => m.SlugOpened) <br />
+                @Math.Ceiling((double)Model.Count(m => m.SlugOpened) * 100 / Model.Count())% of total sent <br />
+                @Math.Ceiling((double)Model.Count(m => m.SlugOpened) * 100 / Model.Count(m => m.Success))% of total delivered
+            </dd>
+            <dt>
+                Number Of Signups
+            </dt>
+            <dd>
+                @Model.Count(m => m.RecipientSignedUp) <br />
+                @Math.Ceiling((double)Model.Count(m => m.RecipientSignedUp) * 100 / Model.Count())% of total sent <br />
+                @Math.Ceiling((double)Model.Count(m => m.RecipientSignedUp) * 100 / Model.Count(m => m.Success))% of total delivered<br />
+                @Math.Ceiling((double)Model.Count(m => m.RecipientSignedUp) * 100 / (Model.Count(m => m.SlugOpened) > 0 ? Model.Count(m => m.SlugOpened) : 1))% of total opened
+            </dd>
+        </dl>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h4>Individual Number Details</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Recipient
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Success)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Error)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SlugOpened)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RecipientSignedUp)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.RenderDestinationString();
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Success)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Error)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SlugOpened)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RecipientSignedUp)
+                        </td>                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

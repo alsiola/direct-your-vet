@@ -1,0 +1,17 @@
+﻿@import 'settings.scss';
+@import '_breakpoint.scss';
+
+footer {
+    background-color: $dark-background;
+    color: $light-foreground;
+
+    @include breakpoint($phone) {        
+        padding:30px;
+    }
+}
+
+footer > .row {
+    
+    max-width:1200px;
+    margin: 0 auto;
+}

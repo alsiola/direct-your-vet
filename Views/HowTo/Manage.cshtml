@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "How To Manage My Practice";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="col-md-12">
+    <p>All your practice management settings can be found under the "Manage Practice" menu - visible when you are logged in as a Practice Manager.</p>
+    <dl>
+        <dt><i class="fa fa-question-circle fa-2x"></i>How do I get clients to sign up?</dt>
+        <dd>There are a variety of ways to get your clients to sign up.  If you go to "Manage Practice" -> "Client Relations" then you can share a custom signup link with your clients on your website, on Facebook, or on Twitter.
+        Using this link will mean the client's places are automatically shared with your practice.  We also provide a range of promotional materials you can use in offline marketing (e.g. newsletters, flyers).  If you need any help
+        with this then <a asp-action="Contact" asp-controller="Home">contact us.</a></dd>
+
+        <dt><i class="fa fa-question-circle fa-2x"></i>How do I add a new member of staff?</dt>
+        <dd>Go to "Manage Practice" -> "Practice Members" and you will see a list of all current practice members.  At the top of the page is a button marked "Invite A New Practice Member", pressing it takes you to a new page, where 
+        you can enter the email address of the colleague you wish to invite, and a short message to them.  Enter these details and press "Send", and they will receive an email allowing them to join your practice.</dd>
+        
+        <dt><i class="fa fa-question-circle fa-2x"></i>How do I remove a member of staff?</dt>
+        <dd>Go to "Manage Practice" -> "Practice Members" and you will see a list of all current practice members.  Next to each member is a "Remove User" link.  Click the link next to the staff member you wish to remove, confirm your action
+        and they will no longer have access to your practice's information.</dd>
+
+        <dt><i class="fa fa-question-circle fa-2x"></i>How do I add another Practice Manager?</dt>
+        <dd>Contact us using the <a asp-action="Contact" asp-controller="Home">contact page</a> and we can give Practice Management privileges to an existing practice staff member.</dd>
+
+        <dt><i class="fa fa-question-circle fa-2x"></i>How do I remove a Practice Manager?</dt>
+        <dd>Contact us using the <a asp-action="Contact" asp-controller="Home">contact page</a> and we can either revoke Practice Management privileges, or remove the staff member entirely.</dd>
+    </dl>
+</div>

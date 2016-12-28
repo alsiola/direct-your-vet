@@ -1,0 +1,94 @@
+﻿@model DYV.Models.ClientRelations.ClientRelationsIndexViewModel
+
+@{
+    ViewData["Title"] = "Client Relations";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="twelve" columns>
+        <p>You should always try and get clients to sign up with your personalised signup link, shown below.  This means that any places they add will automatically be shared with you.  The social media buttons below will automatically
+        use your signup link.</p>
+        <p>Your link is: <a href="@ViewData["signupSlug"]"><b>@ViewData["signupSlug"]</b></a></p>
+        <p>
+            You can add this link to your website with the following code: <br />
+            <pre><code>
+                  &lt;a href&equiv;&quot;@ViewData["signupSlug"]&quot; title&equiv;&quot;Sign Up With DirectYourVet&quot;&gt;
+                    Sign up with DirectYourVet.com and help your vet find you!
+                  &lt;&frasl;a&gt;
+                </code></pre>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="six columns">
+        <h4>Send text messages (SMS)</h4>
+        <p>We can send personalised text messages to your clients encouraging them to sign up.</p>
+        <p class="u-text-center">
+            @Html.ActionButtonWithFa("Send SMS", "SendSMS", "ClientRelations", "button", "fa fa-mobile-phone fa-2x")
+            @Html.ActionButtonWithFa("View Previous Campaigns", "ViewSendResults", "ClientRelations",new { resultType = PurchaseType.SMS }, "button", "fa fa-mobile-phone fa-2x")
+        </p>
+        <p class="u-text-center">@Model.SMSQuota text messages available.</p>
+        <hr />
+    </div>
+
+    <div class="six columns">
+        <h4>Send Emails</h4>
+        <p>Personalised emails are a great way to get your clients involved, and can be extremely cost-effective.</p>
+        <p class="u-text-center">
+            <a class="button"><i class="fa fa-envelope-o fa-2x"></i>Send Email</a>
+        </p>
+        <p class="u-text-center">@Model.EmailQuota emails available.</p>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="twelve columns u-text-center">
+        @Html.ActionButtonWithFa("Purchase more SMS or Email Credits", "Purchase", "ClientRelations", "button button-primary", "fa fa-lock fa-2x");
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="six columns u-flex-column">
+        <h4>Share on Twitter</h4>
+        <p>Twitter is a social media/micro-blogging platform that many practices use to keep in touch with their clients.  Press Tweet to create a new tweet with your signup link - you will have a chance to add a message before it's sent.</p>
+        <p class="u-text-center u-flex-bottom">
+            <a class="button"
+               href="https://twitter.com/share"
+               data-size="large"
+               data-url="@ViewData["signupSlug"]"
+               data-related="vet"
+               data-hashtags="DirectYourVet"
+               data-text="Sign up with DirectYourVet and help our vets find you!">
+                <i class="fa fa-twitter fa-2x"></i>Tweet
+            </a>
+        </p>
+        <hr />
+    </div>
+
+    <div class="six columns u-flex-column">
+        <h4>Share on Facebook</h4>
+        <p>The largest social media website in the world, with incredible power to reach clients.  It's best to share from your practice page as many of your clients will be following you.</p>
+        <div class="u-text-center u-flex-bottom"
+             style=""
+             data-href="@ViewData["signupSlug"]"
+             data-layout="button"
+             data-size="large"
+             data-mobile-iframe="false">
+            <a class="fb-xfbml-parse-ignore button"
+               target="_blank"
+               href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.directyourvet.com%2Fregister&amp;src=sdkpreparse">
+                <i class="fa fa-facebook fa-2x"></i>Share
+            </a>
+        </div>
+        <hr />
+    </div>  
+</div>
+
+@section scripts {
+    @{ await Html.RenderPartialAsync("_SharingScripts"); }
+}

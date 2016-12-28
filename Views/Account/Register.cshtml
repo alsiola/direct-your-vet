@@ -1,0 +1,73 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>@ViewData["Title"].</h2>
+
+<form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+    <h4>Create a new account.</h4>
+    <hr />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row">
+        <div class="six columns">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" required type="email" class="u-full-width" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+            <label asp-for="Name"></label>
+            <input asp-for="Name" required class="u-full-width" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+
+            <label asp-for="Password"></label>
+            <input asp-for="Password" required class="u-full-width" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+            <label asp-for="ConfirmPassword"></label>
+            <input asp-for="ConfirmPassword" required class="u-full-width" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+    </div>
+    @if (Model.WithPractice)
+    {
+        if (!Model.Error)
+        {
+            <div class="row">
+                <div class="six columns">
+                    <label for="Practice">Practice: </label>
+                    <p id="Practice">@Html.DisplayTextFor(Model => Model.PracticeName)</p>
+
+                    <p>Your details will automatically be shared with @Html.DisplayTextFor(Model => Model.PracticeName)</p>
+                    <p>If you would prefer to sign up without automatic sharing, then @Html.ActionLink("register here.", "Register", new { practiceSlug = "" })</p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                <div class="six columns">
+                    <label for="Practice">Practice: </label>
+                    <span id="Practice">Practice Not Found</span>
+
+                    <p class="text-warning"><i class="fa fa-warning"></i>Your practice could not be found.  Please check the link you entered was correct.</p>
+                    <p>You can still sign up, but you will have to opt-in to sharing with your practice.</p>
+                </div>
+            </div>
+        }
+
+    }
+
+    <input asp-for="WithPractice" hidden style="display:none;" />
+    <input asp-for="PracticeId" hidden />
+    <input asp-for="PracticeName" hidden />
+    
+    <div class="row">
+        <div class="six columns">
+            <button type="submit" class="button">Register</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
