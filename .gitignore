@@ -4,3 +4,4 @@ DYV.xproj.user
 bin/
 node_modules/
 Service References/
+obj/
