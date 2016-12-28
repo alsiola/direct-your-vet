@@ -1,7 +1,8 @@
 .bowerrc
 appsettings.json
 DYV.xproj.user
-bin/
-node_modules/
-Service References/
-obj/
+bin
+node_modules
+Service References
+obj
+wwwroot/dist/
